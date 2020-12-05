@@ -1,8 +1,15 @@
+let url = window.location.toString();
+  const getName = (url) => {
+    let urlIn = url.split('=');
+    let name = urlIn[1];
+    if (name == undefined) {name = 'StrigunovOleg';
+  }
+return name;
+}
 
 
-fetch('https://api.github.com/users/StrigunovOleg')
+fetch(`https://api.github.com/users/${getName(url)}`)
   .then(res => res.json())
-  //.then(json => document.getElementById("p1").innerHTML = json.login)
   .then(json => {
     const img = document.createElement('img');
     img.src = json.avatar_url;
