@@ -1,18 +1,38 @@
-let url0 = window.location.toString();
-  const getName0 = (url0) => {
-    let urlIn = url0.split('=');
-    let name0 = urlIn[1];
-    if (name0 == undefined) {name0 = 'StrigunovOleg';
-  }
-return name0;
-}
+let userName = window.location.search;
+let url = `https://api.github.com/users/`;
+let user = 'StrigunovOleg';
 
-const name = `${getName0(url0)}`;
-const url = 'https://api.github.com/users/';
-const log = console.log;
+function searchName() {
+  if (userName) {
+    user = userName.lastIndexOf('=') !== -1 ?
+      (userName.slice(1, userName.lastIndexOf('='))) :
+      (userName.slice(1));
+  }
+};
+
+searchName(userName);
+
+
+
+
+
+
+//
+// let url0 = window.location.toString();
+//   const getName0 = (url0) => {
+//     let urlIn = url0.split('=');
+//     let name0 = urlIn[1];
+//     if (name0 == undefined) {name0 = 'StrigunovOleg';
+//   }
+// return name0;
+// }
+
+// const name = `${getName0(url0)}`;
+// const url = 'https://api.github.com/users/';
+// const log = console.log;
 
 const getName = new Promise((resolve, reject) => {
-  setTimeout(() => name?resolve(name):reject('Не найдено имя'), 3000);
+  setTimeout(() => user?resolve(user):reject('Не найдено имя'), 3000);
 })
 
 const getUrl = new Promise((resolve, reject) => {
